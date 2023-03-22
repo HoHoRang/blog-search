@@ -1,20 +1,20 @@
 package jiwoong.blogsearch.data;
 
-public class BlogResponse<T> {
+public class BlogResponse<T, V> {
 
-    private final String engine;
-    private final T response;
+    private final T requestData;
+    private final V responseData;
 
-    public BlogResponse(String engine, T response) {
-        this.engine = engine;
-        this.response = response;
+    public BlogResponse(T requestData, V responseData) {
+        this.requestData = requestData;
+        this.responseData = responseData;
     }
 
-    public String getEngine() {
-        return engine;
+    public T getRequestData() {
+        return requestData;
     }
 
-    public T getResponse() {
-        return response;
+    public V getResponseData() {
+        return responseData;
     }
 }

@@ -1,9 +1,12 @@
 package jiwoong.blogsearch.service;
 
 import jiwoong.blogsearch.data.KakaoBlogResponse;
+import jiwoong.blogsearch.error.KakaoError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
@@ -19,7 +22,7 @@ public class KakaoApiService {
     }
 
     public KakaoBlogResponse useKakaoWebClient(String query, String sort, Integer page, Integer size) {
-        KakaoBlogResponse result = kakaoWebClient.get()
+        return kakaoWebClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .queryParam("query", query)
                         .queryParam("sort", Optional.ofNullable(sort))
@@ -28,8 +31,19 @@ public class KakaoApiService {
                         .build())
                 .header("Authorization", "KakaoAK " + kakaoOpenApiAuthorization)
                 .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError
+                        , clientResponse -> clientResponse.bodyToMono(KakaoError.class)
+                                .flatMap(error ->
+                                        Mono.error(new IllegalArgumentException(error.getMessage() + ":" + error.getErrorType()))
+                                )
+                )
+                .onStatus(HttpStatusCode::is5xxServerError
+                        , clientResponse -> clientResponse.bodyToMono(KakaoError.class)
+                                .flatMap(error ->
+                                        Mono.error(new IllegalStateException(error.getMessage() + ":" + error.getErrorType()))
+                                )
+                )
                 .bodyToMono(KakaoBlogResponse.class)
                 .block();
-        return result;
     }
 }

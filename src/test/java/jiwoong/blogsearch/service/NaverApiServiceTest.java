@@ -4,7 +4,6 @@ import jiwoong.blogsearch.data.NaverBlogResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +29,37 @@ class NaverApiServiceTest {
     }
 
     @Test
-    public void naverFail() {
+    public void naverFailWithPage() {
+        // given
+        String query = "검색어";
+        String sort = "sim";
+        int page = 111111;
+        int size = 10;
+
+        // when
+
+        // then
+        assertThrows(IllegalArgumentException.class,
+                () -> naverApiService.useNaverWebClient(query, sort, page, size));
+    }
+
+    @Test
+    public void naverFailWithSize() {
+        // given
+        String query = "검색어";
+        String sort = "sim";
+        int page = 1;
+        int size = 10000;
+
+        // when
+
+        // then
+        assertThrows(IllegalArgumentException.class,
+                () -> naverApiService.useNaverWebClient(query, sort, page, size));
+    }
+
+    @Test
+    public void naverFailWithSort() {
         // given
         String query = "검색어";
         String sort = "abcde";
@@ -40,7 +69,7 @@ class NaverApiServiceTest {
         // when
 
         // then
-        assertThrows(WebClientResponseException.BadRequest.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> naverApiService.useNaverWebClient(query, sort, page, size));
     }
 }

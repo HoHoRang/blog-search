@@ -20,7 +20,6 @@ class JpaWordRepositoryTest {
         // given
         Word word = new Word();
         word.setName("검색어");
-        word.setCount(1);
 
         // when
         wordRepository.save(word);
@@ -35,7 +34,6 @@ class JpaWordRepositoryTest {
         // given
         Word word = new Word();
         word.setName("검색어");
-        word.setCount(1);
         wordRepository.save(word);
 
         // when
@@ -50,11 +48,9 @@ class JpaWordRepositoryTest {
         // given
         Word word1 = new Word();
         word1.setName("검색어1");
-        word1.setCount(1);
         wordRepository.save(word1);
         Word word2 = new Word();
         word2.setName("검색어2");
-        word2.setCount(1);
         wordRepository.save(word2);
 
         // when
@@ -68,8 +64,8 @@ class JpaWordRepositoryTest {
     void increaseCount() {
         // given
         Word word = new Word();
+
         word.setName("검색어");
-        word.setCount(1);
         wordRepository.save(word);
 
         // when

@@ -13,7 +13,6 @@ public class JpaWordRepository implements WordRepository{
         this.em = em;
     }
 
-
     @Override
     public Word save(Word word) {
         em.persist(word);

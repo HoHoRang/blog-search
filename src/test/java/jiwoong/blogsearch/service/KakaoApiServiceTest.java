@@ -4,7 +4,6 @@ import jiwoong.blogsearch.data.KakaoBlogResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,7 +29,7 @@ class KakaoApiServiceTest {
     }
 
     @Test
-    public void kakaoFail() {
+    public void kakaoFailWithPage() {
         // given
         String query = "검색어";
         String sort = "accuracy";
@@ -40,8 +39,22 @@ class KakaoApiServiceTest {
         // when
 
         // then
-        assertThrows(WebClientResponseException.BadRequest.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> kakaoApiService.useKakaoWebClient(query, sort, page, size));
     }
 
+    @Test
+    public void kakaoFailWithSize() {
+        // given
+        String query = "검색어";
+        String sort = "accuracy";
+        int page = 1;
+        int size = 10000;
+
+        // when
+
+        // then
+        assertThrows(IllegalArgumentException.class,
+                () -> kakaoApiService.useKakaoWebClient(query, sort, page, size));
+    }
 }
