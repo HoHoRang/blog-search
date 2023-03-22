@@ -43,7 +43,7 @@ size:   [Optional] 한 페이지 문서 수(기본 10)
 
 ![image](https://user-images.githubusercontent.com/15374108/226827177-f6987538-8054-4a25-b4e6-d59e7414e625.png)
 
-- DB는 h2 인메모리 DB로 구현했습니다. 아래와 같이 {URL}/h2-console로 접근 가능
+- DB는 h2 인메모리 DB로 구현. 아래와 같이 {URL}/h2-console로 접근 가능
 ```
 Driver Class: org.h2.Driver
 JDBC URL: jdbc:h2:mem:test
