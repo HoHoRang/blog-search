@@ -8,6 +8,7 @@
 
 # API 명세
 
+[blog-search API 명세서.xlsx](https://github.com/HoHoRang/blog-search/files/11039379/blog-search.API.xlsx)
 ![image](https://user-images.githubusercontent.com/15374108/226888559-c00338fc-2137-4859-83fb-62c50030e3d8.png)
 
 ### 블로그 검색 리스트("/search/list", GET)
@@ -34,7 +35,7 @@ size:   [Optional] 한 페이지 문서 수(기본 10)
 
 # 빌드 결과물(.jar)
 
-- [파일 링크](.jar 파일 URL)
+- [파일 링크](https://drive.google.com/file/d/1XYUgLx8nTzqUBwb0NlQ0gXfN4hymxfes/view?usp=sharing)
 
 # 참고사항
 
