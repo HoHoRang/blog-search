@@ -36,6 +36,8 @@ size:   [Optional] 한 페이지 문서 수(기본 10)
 # 빌드 결과물(.jar)
 
 - [파일 링크](https://drive.google.com/file/d/1pQYi646d1b9DLSXoxgbud4WwAZ5BP4F9/view?usp=share_link)
+  
+  (Google Drive에 업로드되어 다운로드가 느림. 다운로드 누른 후 잠시 기다리면 다운로드 진행됨)
 
 # 참고사항
 
